@@ -1,0 +1,36 @@
+---
+title: "LoadandUseWeatherData"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(MattiaGantFlagWeather)
+```
+
+Loads the data.
+
+```{r}
+data("Flagstaff_Weather")
+head(Flagstaff_Weather)
+```
+
+Uses the data for a graph
+```{r}
+Flagstaff_Weather %>%
+  filter(DATE >= ymd('2010/01/01')) %>%
+  ggplot(aes(x = DATE, y = TMAX)) +
+  geom_line()
+```
+
+```{r}
+Flagstaff_Weather %>%
+  ggplot(aes(x = DATE, y = PRCP)) +
+  geom_line()
+```
+```{r}
+Flagstaff_Weather %>%
+  ggplot(aes(x = PRCP, y = SNOW)) +
+  geom_point()
+```
+
